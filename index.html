@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Joaquín Bahamondes, Ph.D.</title>
+
+<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-6.5.2/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Joaquín Bahamondes</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="01_material_docente.html">Material Docente</a>
+</li>
+<li>
+  <a href="cuant_2.html">Archivo de Investigación</a>
+</li>
+<li>
+  <a href="profundizacion.html">Supervisión</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="mailto:&lt;jbahamondes@ucn.cl&gt;">
+    <span class="fa fa-envelope fa-lg"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="http://github.com/joaquinbah/">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="https://twitter.com/joaquinbah">
+    <span class="fa fa-twitter fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Joaquín Bahamondes, Ph.D.</h1>
+
+</div>
+
+
+<p align="left">
+<a href="mailto:jbahamondes@ucn.cl"
+class="email">jbahamondes@ucn.cl</a><br />
+<a
+href="https://www.researchgate.net/profile/Joaquin-Bahamondes">Researchgate</a>
+| <a
+href="https://scholar.google.com/citations?user=YETb1hIAAAAJ&amp;hl=en">Google
+Scholar</a>
+</p>
+<p>Académico de la Escuela de Psicología UCN. Psicólogo de la
+Universidad Católica del Norte y Doctor en psicología de la University
+of Auckland, Nueva Zelanda. Investigador principal del estudio
+<em>Percepción de legitimidad y bienestar psicológico: Avanzando la
+teoría sobre el efecto paliativo de las creencias ideológicas</em> <a
+href="https://oles-cl.netlify.app/">FONDECYT #11230903</a>. Investigador
+en el <em>Observatorio de Legitimidad y Violencia</em> <a
+href="https://doi.org/10.17605/OSF.IO/TPNWD">OLES</a>, y en el <em>New
+Zealand Attitudes and Values Study</em> <a
+href="https://www.psych.auckland.ac.nz/en/about/new-zealand-attitudes-and-values-study.html">NZAVS</a>.
+Sus principales líneas de investigación se enmarcan en la psicología
+social y política, específicamente en comprender cómo diversas formas de
+ideología impactan las percepciones de justicia/injusticia, con
+particular interés en sus efectos sobre el bienestar psicológico de
+minorías sociales. Actualmente imparte cursos en psicología social y
+análisis de datos avanzados en pre y postgrado.</p>
+<p><i class="ai ai-google-scholar-square"></i></p>
+<div id="contenido" class="section level2 tabset">
+<h2 class="tabset">Contenido</h2>
+<div id="formación-académica" class="section level3">
+<h3>Formación Académica</h3>
+<ul>
+<li>Doctor en Psicología, <em>Universidad de Auckland</em>, Nueva
+Zelanda.</li>
+<li>Magíster en Psicología Social, <em>Universidad Católica del
+Norte</em>, Chile.</li>
+<li>Licenciado en Psicología, <em>Universidad Católica del Norte</em>,
+Chile.</li>
+</ul>
+</div>
+<div id="docencia" class="section level3">
+<h3>Docencia</h3>
+<p><strong>Posgrado</strong></p>
+<ul>
+<li>Técnicas de Agrupación (<em>Universidad de Talca</em>)</li>
+<li>Evaluación de Instrumentos (<em>Universidad Diego
+Portales</em>)</li>
+<li>Profundización en Metodología (<em>Universidad Católica del
+Norte</em>)</li>
+<li>Metodologías Cuantitativas Avanzadas II (<em>Universidad Católica
+del Norte</em>)</li>
+</ul>
+<p><strong>Pregrado</strong></p>
+<ul>
+<li>Psicología Social (<em>Univesidad Católica del Norte</em>)<br />
+</li>
+<li>Metodologías Cuantitativas I (<em>Univesidad Católica del
+Norte</em>)<br />
+</li>
+<li>Metodologías Cuantitativas II (<em>Univesidad Católica del
+Norte</em>)</li>
+<li>Psicología Social (<em>Univesidad de Auckland</em>)<br />
+</li>
+<li>Introducción a la Psicología (<em>Univesidad de Auckland</em>)</li>
+<li>Estadística inferencial (<em>Univesidad Santo Tomás</em>)<br />
+</li>
+<li>Filosofía de las Ciencias (<em>Univesidad Católica del
+Norte</em>)<br />
+</li>
+<li>Género, Derechos humanos y ciudadanía (<em>Univesidad Católica del
+Norte</em>)</li>
+</ul>
+</div>
+<div id="producción-científica" class="section level3">
+<h3>Producción científica</h3>
+<p><strong>Artículos de investigación recientes</strong></p>
+<ul>
+<li><p>Bahamondes, J. Sibley, C. G., &amp; Osborne, D. (en prensa).
+System justification or social dominance? A multilevel test of the
+ideological motivators of perceived discrimination. <em>Personality and
+Social Psychology Bulletin</em>.</p></li>
+<li><p>Bahamondes, J., Sengupta, N. K., Sibley, C. G., &amp; Osborne, D.
+(2021). Examining the relational underpinnings and consequences of
+system-justifying beliefs: Explaining the palliative effects of system
+justification. <em>British Journal of Social Psychology, 60</em>(3),
+1027-1050. <a href="https://doi.org/10.1111/bjso.12440"
+class="uri">https://doi.org/10.1111/bjso.12440</a></p></li>
+<li><p>Bahamondes, J., Sibley, C. G., &amp; Osborne, D. (2021). System
+justification and perceptions of group-based discrimination:
+Investigating the temporal order of the ideologically motivated
+minimization (or exaggeration) of discrimination across low- and
+high-status groups. <em>Social Psychological and Personality Science,
+12</em>(4), 431-441. <a href="https://doi.org/10.1177/1948550620929452"
+class="uri">https://doi.org/10.1177/1948550620929452</a></p></li>
+</ul>
+<p>Listado completo de publicaciones en <a
+href="https://scholar.google.com/citations?user=YETb1hIAAAAJ&amp;hl=es&amp;oi=ao">Google
+scholar</a> <a
+href="https://www.researchgate.net/profile/Joaquin-Bahamondes">Researchgate</a></p>
+<p><strong>Capítulos en libros editados</strong></p>
+<ul>
+<li><p>Osborne, D., Becker, J. C., Bahamondes, J, &amp; García-Sánchez,
+E. (en prensa). The Political Psychology of Inequality: Why Rising Rates
+of Inequality Matter for Democracy. In D. Osborne, &amp; C. G. Sibley
+(Eds.), <em>Cambridge Handbook of Political Psychology</em>. Cambridge,
+UK: Cambridge University Press.</p></li>
+<li><p>Bahamondes, J. (en prensa). «La investigación como artesanía»:
+Reflexiones sobre el ejercicio de investigar en las ciencias sociales.
+En E. Rentería, E. García, &amp; S. Malvezzi (Eds.), <em>Ejemplos de
+método e investigaciones sociales. Aplicaciones en Psicología
+Organizacional y del Trabajo y en Psicología Social</em> (Vol. 2). Cali,
+Colombia: Editorial Universidad del Valle.</p></li>
+<li><p>Barrientos, J., Gómez, F., Cárdenas, M., Saiz, J. L., Guzmán, M.,
+Espinoza, R., &amp; Bahamondes, J. (2019). Efectos de la violencia
+homofóbica en el bienestar y calidad de vida de población lesbiana, gay,
+bisexual y transgénero (LGBT). En M. Neves, A. Branfelli, &amp; S. D.
+Cúnico (Eds.), <em>Gênero e violência: repercussões nos processos
+psicossociais e de saúde</em> (pp. 445-476). Porto Alegre, Brasil:
+Editora Universitária da PUCRS.</p></li>
+<li><p>Barrientos, J., Cárdenas, M., Guzmán, M., Gómez, F., &amp;
+Bahamondes, J. (2016). Bienestar y Calidad de Vida en población
+lesbiana, gay, bisexual y transgénero (LGBT). In A. Mendiburo, J. C.
+Oyanedel, &amp; D. Páez (Eds.), <em>La felicidad de los chilenos:
+estudios sobre bienestar</em> (Vol. 2, pp. 103-124). Santiago, Chile:
+RIL Editores.</p></li>
+</ul>
+</div>
+<div id="supervisión" class="section level3">
+<h3>Supervisión</h3>
+<p><strong>Pregrado</strong></p>
+<ul>
+<li><p>Rojas, F., Moreira, F., Vargas, V., &amp; Todorovic, D. (2021).
+<em>Orientación e Identificación Política previo al Estallido
+Social</em>, Escuela de Psicología, Universidad Católica del
+Norte.</p></li>
+<li><p>Obregón, F., González, L., &amp; Gutiérrez, F. (2022).
+<em>Jerarquía y seguridad: Motivaciones ideológicas del rechazo hacia
+las políticas de acción afirmativa para migrantes Latino Americanos en
+Chile</em>, Escuela de Psicología, Universidad Católica del
+Norte.</p></li>
+<li><p>Alfaro, C., Biaggini, J., Molina, G., &amp; Muñoz, J. (2022).
+<em>Antecedentes Ideológicos de las evaluaciones negativas hacia seis
+minorías migrantes</em>, Escuela de Psicología, Universidad Católica del
+Norte.</p></li>
+</ul>
+<p><strong>Postgrado</strong></p>
+<ul>
+<li>Murray, C. (2023). <em>#</em> [Tesis doctoral], Escuela de
+Psicología, Universidad Católica del Norte.</li>
+</ul>
+</div>
+<div id="proyectos-de-investigación" class="section level3">
+<h3>Proyectos de investigación</h3>
+<p><strong>Como investigador principal</strong></p>
+<ul>
+<li><p><strong>2023-2026, FONDECYT de iniciación 2023 #11230903,
+ANID</strong><br />
+“<em>Percepción de legitimidad y bienestar psicológico: Avanzando la
+teoría sobre el efecto paliativo de las creencias
+ideológicas</em>”.</p></li>
+<li><p><strong>2021-2023, POLIDAS: Política, Ideología y Actitudes
+Sociales. VRIDT de iniciación #073/2021, UCN</strong><br />
+“<em>Defensa del estatus quo o rechazo de la igualdad: Avanzando la
+teoría sobre la relación y el rol específico de las dos dimensiones de
+la ideología política</em>”.</p></li>
+</ul>
+<p><strong>Como co-investigador / Colaborador</strong></p>
+<ul>
+<li><strong>2009–2029, Templeton Religion Trust TRT#1190240</strong>
+(Financiamiento múltiple)<br />
+<em>NZAVS: The New Zealand Attitudes and Values Study</em><br />
+PI: Chris G. Sibley.<br />
+</li>
+<li><em>OLES</em> | Mónica Gerber.</li>
+<li><em>FONDECYT</em> | Mónica Gerber.</li>
+<li><strong>2021–2022, FONDECYT Regular #1190240, ANID</strong><br />
+“<em>Apego adulto, homofobia internalizada y calidad de la relación en
+parejas del mismo sexo en Chile</em>”.<br />
+PI: Dra. Mónica Guzmán.</li>
+<li><strong>2014 – 2015, FONDECYT Regular #1140887, ANID</strong><br />
+“<em>Más allá de la homofobia: Calidad de vida y Crecimiento
+Postraumático como respuesta al Estrés Minoritario de Gay y Lesbianas en
+Chile</em>”.<br />
+PI: Dr. Jaime Barrientos.</li>
+</ul>
+</div>
+<div id="presentaciones" class="section level3">
+<h3>Presentaciones</h3>
+<ul>
+<li>Lanzamiento OLES <a
+href="https://www.youtube.com/watch?v=DPqTKYSvh30">Grabación</a><br />
+</li>
+<li>Bahamondes, J. MPOSS <a
+href="https://youtu.be/tNE57S6Y4eA">Grabación</a><br />
+</li>
+<li>Seminario OLES 2021 <a
+href="https://www.youtube.com/watch?v=HG4PIYHctJo&amp;t=2266s">Grabación</a></li>
+</ul>
+</div>
+</div>
+<div id="section" class="section level2">
+<h2></h2>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

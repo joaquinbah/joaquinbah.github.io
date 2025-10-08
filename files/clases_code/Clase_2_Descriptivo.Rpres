@@ -1,0 +1,70 @@
+Metodologia Cuantitativa II
+========================================================
+author: Joaquin Bahamondes, Ph.D.
+date: Universidad Catolica del Norte
+autosize: true
+
+First Slide
+========================================================
+
+For more details on authoring R presentations please visit <https://support.rstudio.com/hc/en-us/articles/200486468>.
+
+- Bullet 1
+- Bullet 2
+- Bullet 3
+
+Slide With Code
+========================================================
+![](bird_01.png)
+
+Slide With Plot
+========================================================
+
+![](bird_02.png)
+
+
+Slide With Plot
+========================================================
+
+```{r, echo=FALSE}
+library(ggplot2)
+# Basic density
+p <- ggplot(df, aes(x=value)) + 
+  geom_density(color="black", fill="lightblue")
+
+# Add mean line
+p+ geom_vline(aes(xintercept=mean(value)),
+            color="blue", linetype="dashed", size=1)
+```
+
+Slide With Plot
+========================================================
+
+Calculamos la media para ambos grupos
+
+```{r, echo=FALSE}
+#Calculate mean for each group
+library(plyr)
+mu <- ddply(df, "label", summarise, grp.mean=mean(value))
+head(mu)
+```
+
+Slide With Plot
+========================================================
+
+Calculamos la media para ambos grupos
+
+```{r, echo=FALSE}
+# Change density plot line colors by groups
+p<-ggplot(df, aes(x=value, fill=label)) +
+# Use semi-transparent fill
+  geom_density(alpha=0.4) +
+# Add mean lines  
+  geom_vline(data=mu, aes(xintercept=grp.mean, color=label),
+             linetype="dashed") +
+# Remove gray background  
+  theme_classic() +
+# Place legend on top  
+  theme(legend.position="top")
+p
+```

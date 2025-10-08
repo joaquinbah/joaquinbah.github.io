@@ -1,0 +1,103 @@
+---
+title: "Ejercicio sesión 2: LCA"
+output: html_document
+---
+
+<p align="center">
+Estimación de perfiles latentes en M*plus*  
+Joaquín Bahamondes, Ph.D.^[Universidad Católica del Norte, jbahamondes@ucn.cl]
+</p>
+
+```{css, echo=FALSE}
+h1 {
+  text-align: center;
+  color: black;
+  font-weight: bold;
+}
+
+h2, h3 {
+  color: black;
+  font-weight: bold;
+}
+```
+
+</p>
+
+<style>
+body, p {
+  background-color: white;
+  color: black; 
+  font-family: Cambria Math;
+}
+</style>
+
+<p align="center">
+![](Google_Drive-Logo.png){width=5%}[Drive del curso](https://drive.google.com/drive/folders/1Uu1aWZEsmbblNaA5YUnTgrTNX_Dd2llI?usp=sharing) 
+</p>
+
+## Instrucciones:  
+Utilice el archivo `Sesion2b_LCA_sintaxis base.inp` para llevar a cabo un análisis de perfil latente, reportando los resultados en la tabla proporcionada (`Sesion2b_LCA_Tabla base.docx`). En esta guía se entregan instrucciones para estimar una serie de modelos en pasos sucesivos, necesarios para la identificación y selección del modelo óptimo. Siga los pasos para contestar las siguientes preguntas:  
+**(1)** *¿Cuál le parece que es la solución óptima de perfiles?*  
+**(2)** *¿Qué distingue unos perfiles de otros?*
+
+* Los datos utilizados en este ejercicio pertenecen al [Open-Source Psychometrics Project](https://openpsychometrics.org/_rawdata/).
+
+## Información preliminar:  
+Los datos deben ser especificados bajo el comando `DATA`. Asegúrese que el archivo de datos `Sample_big5_r.dat` esté ubicado en la misma carpeta que las sintaxis que utilice para estimar cada modelo, o incluir el directorio de ubicación completo en su defecto. Los datos deben ser especificados como:
+
+```{r, eval=FALSE, warning=FALSE, message=FALSE}
+DATA:
+FILE IS Sample_big5_r.dat;
+```
+
+Cada uno de los pasos detallados debe repetirse para cada solución de *k* perfiles a estimar. Para este ejercicio, se necesita estimar modelos desde 2 a 6 perfiles para su sucesiva comparación. En resumen, se deben estimar tres pasos (1a, 1b y 2) para cada modelo, es decir, un total de 15 sintaxis. Para definir el valor de los *k* perfiles a estimar, debe modificarlos bajo el comando `CLASSES`, por ejemplo: `CLASSES = c(4)`; o `CLASSES = c(6)`;, dependiendo de si desea estimar una solución de 4 o 6 perfiles, respectivamente. El comando `CLASSES` debe ser definido bajo el comando más general `VARIABLE:`, luego de haber definido los nombres de las variables de la base de datos, y las variables a ser utilizadas en el análisis (tal como se muestra en la sintaxis base).  
+Se detalla un tercer paso en esta guía, el cual podrán omitir con el fin de optimizar el tiempo. No obstante, éste último debe considerarse, en caso de usar este análisis con el fin de conducir un estudio científico en el futuro.  
+
+## Estimación:  
+
+### Paso 1: Identificación del modelo  
+
+Primero, se debe partir por buscar el mejor valor de loglikelihood. Recuerde que M*plus* indicará si logró repetirlo de forma sistemática, lo que indica que la solución logra ser identificada.
+
+#### Paso 1a. Para partir, utilice 20 repeticiones con 4 optimizaciones:
+
+```{r, eval=FALSE}
+ANALYSIS: TYPE = MIXTURE;
+          STARTS = 20 4;
+          PROCESSORS = 4(STARTS);
+```
+
+#### Paso 1b. Reestime el mismo modelo, esta vez aumentando repeticiones y optimizaciones a 100 y 20, respectivamente:  
+
+```{r, eval=FALSE}
+ANALYSIS: TYPE = MIXTURE;
+          STARTS = 100 20;
+          PROCESSORS = 4(STARTS);
+```
+
+### Paso 2: Vuong-Lo-Mendell-Rubin likelihood ratio test para comparación  
+
+Una vez replicado el mejor valor de loglikelihood, sabremos que el modelo está identificado. Con el fin de hacer más rápido el calculo del Vuong-Lo-Mendell-Rubin likelihood test, que permite comparar el modelo *k*-1 (H_0) vs. *k*, especificaremos los `STARTS` en cero, y solicitaremos al programa que utilice la semilla (seed) correspondiente a la mejor estimación de loglikelihood, de modo que no tenga que estimar nuevamente las repeticiones. La semilla (seed) equivale a el primer valor de la columna del medio en el apartado del resultado de las iteraciones de loglikelihood, tal como se observa en el output de ejemplo:
+
+```{r, eval=FALSE}
+RANDOM STARTS RESULTS RANKED FROM THE BEST TO THE WORST LIKELIHOOD VALUES
+
+Final stage likelihood values at local maxima, seeds, and initial stage start numbers:
+  
+    -89566.408  430771      5118
+    -89566.408  430771      1892
+    -89566.408  430771      9146
+    -89566.408  430771      2718
+```
+
+Una vez identificado el valor, se debe especificar bajo el comando `OPTSEED`, en la sección de `ANALYSIS`, y solicitar `TECH11` en los resultados (OUTPUT). Recuerde utilizar el valor de la semilla obtenido en su propio output, no el que se presenta en este ejemplo. A continuación se detalla el código:
+
+```{r, eval=FALSE}
+ANALYSIS: TYPE = MIXTURE;
+          STARTS = 0;
+          OPTSEED = 430771;
+          PROCESSORS = 4(STARTS);
+OUTPUT: SAMPSTAT CINT TECH11;
+```
+
+

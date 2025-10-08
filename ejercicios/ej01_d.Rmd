@@ -1,0 +1,32 @@
+```{css, echo=FALSE}
+h1 {
+  text-align: center;
+  color: black;
+  font-weight: bold;
+}
+```
+
+
+# Metodologías Cuantitativas I  
+<p align="center">
+**Joaquín Bahamondes, Ph.D.^[Universidad Católica del Norte, jbahamondes@ucn.cl]**
+</p>
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Ejercicio 1
+
+```{r letter-a, echo=FALSE}
+library(learnr)
+
+question("What number is the letter A in the English alphabet?",
+  answer("8"),
+  answer("14"),
+  answer("1", correct = TRUE),
+  answer("23")
+)
+```
+
+

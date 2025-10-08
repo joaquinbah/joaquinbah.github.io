@@ -1,0 +1,153 @@
+
+```{css, echo=FALSE}
+h1 {
+  text-align: center;
+  color: black;
+  font-weight: bold;
+}
+```
+
+
+# Guía 1: Tendencia central y dispersión  
+<p align="center">
+**Joaquín Bahamondes, Ph.D.^[Universidad Católica del Norte, jbahamondes@ucn.cl]**
+</p>
+
+```{r setup, include=FALSE}
+pacman::p_load(webexercises, knitr, ggplot2, patchwork)
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Media
+
+### Exercise 
+
+```{r}
+sexo <- c("H", "M", "M", "H", "H", "M", "M", "M", "H", "M", "H")
+edad <- c(18,23,24,22,21,21,24,19,23,18,25)
+estatura <- c(1.68, 1.53, 1.67, 1.84, 1.74, 1.71, 1.59, 1.50, 1.78, 1.61, 1.75)
+peso <- c(82, 48, 58, 92, 77, 60, 51, 45, 88, 61, 75)
+data01 <- as.data.frame(cbind(sexo, edad, estatura, peso))
+```
+
+Tenemos registradas las edades de *n* = `r nrow(data01)` personas. Para resumirlas, calculemos la Media ($\overline{x}$) y, para comprender su dispersión, calcularemos tambipen su desviación típica ($s$).
+
+```{r}
+kable(data01,caption='Tabla 1. Matriz de datos', align = "l", row.names = T)
+```
+
+*Responda estas preguntas en base a la matriz de datos disponible aquí*  
+
+2 plus 2 equals `r fitb(4, num = TRUE)` 
+
+Mean of age `r fitb(round(mean(edad), 2), num = TRUE)`
+
+Standard deviation of age `r fitb(round(mean(edad), 2), num = TRUE)`
+
+```{r}
+# New variable for the difference between each value and the mean
+data01$edad <- as.numeric(data01$edad)
+data01$dev_edad <- data01$edad - round(mean(data01$edad), 2)
+dev01 <- round(data01$dev_edad, 2)
+x1 <- seq_along(dev01)
+
+data01$estatura <- as.numeric(data01$estatura)
+data01$dev_estatura <- data01$estatura - round(mean(data01$estatura), 2)
+dev02 <- round(data01$dev_estatura, 2)
+x2 <- seq_along(dev02)
+
+data01$peso <- as.numeric(data01$peso)
+data01$dev_peso <- data01$peso - round(mean(data01$peso), 2)
+dev03 <- round(data01$dev_peso, 2)
+x3 <- seq_along(dev03)
+
+plot01 <- ggplot(data.frame(x1, dev01)) +
+  # geom_bar anchors each bar at zero (which is the mean minus the mean)
+  geom_bar(aes(x1, dev01), stat = "identity"
+           , position = "dodge", fill = "darkred") +
+  # but you can change the y-axis labels with a function, to add the mean back on
+  scale_y_continuous(breaks = c(-4:4)) +
+  scale_x_continuous(breaks = c(1:11)) +
+  xlab("Participante") +
+  ylab("Edad (Desviación en años)") +
+  theme_bw()
+
+plot02 <- ggplot(data.frame(x2, dev02)) +
+  # geom_bar anchors each bar at zero (which is the mean minus the mean)
+  geom_bar(aes(x2, dev02), stat = "identity"
+           , position = "dodge", fill = "darkred") +
+  # but you can change the y-axis labels with a function, to add the mean back on
+  scale_y_continuous(breaks = c(0.15, 0.10, 0.05, 0, -0.05, -0.10, -0.15)) +
+  scale_x_continuous(breaks = c(1:11)) +
+  xlab("Participante") +
+  ylab("Estatura (Desviación en mts.)") +
+  theme_bw()
+
+plot03 <- ggplot(data.frame(x3, dev03)) +
+  # geom_bar anchors each bar at zero (which is the mean minus the mean)
+  geom_bar(aes(x3, dev03), stat = "identity"
+           , position = "dodge", fill = "darkred") +
+  #scale_y_continuous(breaks = c(-25:25)) +
+  scale_x_continuous(breaks = c(1:11)) +
+  xlab("Participante") +
+  ylab("Peso (Desviación en kg.)") +
+  theme_bw()
+
+plot02 / plot03
+```
+
+
+```{r}
+# New variable for the difference between each value and the mean
+data01$edad <- as.numeric(data01$edad)
+data01$dev_edadz <- data01$dev_edad/sd(data01$dev_edad)
+dev01z <- round(data01$dev_edadz, 2)
+x1z <- seq_along(dev01z)
+
+data01$estatura <- as.numeric(data01$estatura)
+data01$dev_estaturaz <- data01$dev_estatura/sd(data01$dev_estatura)
+dev02z <- round(data01$dev_estaturaz, 2)
+x2z <- seq_along(dev02z)
+
+data01$peso <- as.numeric(data01$peso)
+data01$dev_pesoz <- data01$dev_peso/sd(data01$dev_peso)
+dev03z <- round(data01$dev_pesoz, 2)
+x3z <- seq_along(dev03z)
+
+plot01z <- ggplot(data.frame(x1z, dev01z)) +
+  # geom_bar anchors each bar at zero (which is the mean minus the mean)
+  geom_bar(aes(x1z, dev01z), stat = "identity"
+           , position = "dodge", fill = "navy") +
+  # but you can change the y-axis labels with a function, to add the mean back on
+  #scale_y_continuous(breaks = c(-4:4)) +
+  scale_x_continuous(breaks = c(1:11)) +
+  xlab("Participante") +
+  ylab("Edad (Desviación en DT)") +
+  theme_bw()
+
+plot02z <- ggplot(data.frame(x2z, dev02z)) +
+  # geom_bar anchors each bar at zero (which is the mean minus the mean)
+  geom_bar(aes(x2z, dev02z), stat = "identity"
+           , position = "dodge", fill = "navy") +
+  # but you can change the y-axis labels with a function, to add the mean back on
+  scale_y_continuous(breaks = c(-1.5:1.5)) +
+  scale_x_continuous(breaks = c(1:11)) +
+  xlab("Participante") +
+  ylab("Estatura (Desviación en DT)") +
+  theme_bw()
+
+plot03z <- ggplot(data.frame(x3z, dev03z)) +
+  # geom_bar anchors each bar at zero (which is the mean minus the mean)
+  geom_bar(aes(x3z, dev03z), stat = "identity"
+           , position = "dodge", fill = "navy") +
+  #scale_y_continuous(breaks = c(-25:25)) +
+  scale_x_continuous(breaks = c(1:11)) +
+  xlab("Participante") +
+  ylab("Peso (Desviación en DT)") +
+  theme_bw()
+
+plot02z / plot03z
+```
+
+
+

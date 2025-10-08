@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>leps.knit</title>
+
+<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
+<script src="site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<link href="site_libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="site_libs/datatables-binding-0.33/datatables.js"></script>
+<link href="site_libs/dt-core-1.13.6/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="site_libs/dt-core-1.13.6/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="site_libs/dt-core-1.13.6/js/jquery.dataTables.min.js"></script>
+<link href="site_libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet" />
+<script src="site_libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
+<link href="site_libs/font-awesome-6.5.2/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Joaquín Bahamondes</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="01_material_docente.html">Material Docente</a>
+</li>
+<li>
+  <a href="cuant_2.html">Archivo de Investigación</a>
+</li>
+<li>
+  <a href="profundizacion.html">Supervisión</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="mailto:&lt;jbahamondes@ucn.cl&gt;">
+    <span class="fa fa-envelope fa-lg"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="http://github.com/joaquinbah/">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="https://twitter.com/joaquinbah">
+    <span class="fa fa-twitter fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+
+</div>
+
+
+<p><img src="files/leps_logo.jpg" style="width:40.0%" /></p>
+<p>La encuesta Legitimidad Política y Salud (LEPS) corresponde a un
+estudio enfocado en la medición de diversas ideologías, actitudes
+sociales y políticas en una muestra no probabilística de 1046
+participantes mayores de edad en Chile.</p>
+<div id="contenido" class="section level2 tabset">
+<h2 class="tabset">Contenido</h2>
+<div id="documentos" class="section level3">
+<h3>Documentos</h3>
+<p><a href="files/clase_2.html">Manual metodológico</a><br />
+<a href="files/clase_2.html">Informe descriptivo</a><br />
+<a href="files/clase_2.html">Presentación lanzamiento</a></p>
+</div>
+<div id="libro-de-código" class="section level3">
+<h3>libro de código</h3>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-c8c00e1924fac0615083" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-c8c00e1924fac0615083">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60","61","62","63","64","65","66","67","68","69","70","71","72","73","74","75","76","77","78","79","80","81","82","83","84","85","86","87","88","89","90","91","92","93","94","95","96","97","98","99","100","101","102","103","104","105","106","107","108","109","110","111","112","113"],["RecordedDate","sexo","etnia","edad","ciudad","educacion","ssc","ingresos","religion","relig_otro","religiosidad","polori","sj01","sj02","sj03r","sj04","sj05","sj06","sj07r","sj08","sdo01","sdo02","sdo03","sdo04r","sdo05r","sdo06r","gsj01","gsj02","esj01","esj02","hn01","hn02","hn03","se01r","se02","se03","mg01","mg02","mg03","pat01","pat02","nat01","nat02","id_nat","rwa01","rwa02","rwa03","rwa04","rwa05","rwa06","lwa01","lwa02","lwa03","lwa04","lwa05","id_eth","id_gen","id_cls","pdisc_g","pdisc_e","crime_threat","econ_threat","hhrr_2019","hhrr_1973","plurinat01","plurinat02","affaction","swl","kess01","kess02","kess03","kess04","kess05","kess06","peruv","boliv","colom","venez","haiti","argen","estado","congres","police","army","justice","constit","q_demand","q_treat","id","time_l","filter","sj_total","gsj_total","esj_total","sdo_total","sdo_d","sdo_e","rwa_total","lwa_total","hn_total","se_total","mg_total","pat_total","nat_total","plurinat_total","kess_total","polori_3","ingresosm","zona","cat_demand","cat_treat","nse","nse_num"],["Fecha","Sexo","Etnia","Edad","Ciudad de residencia","Educación","Clase social subjetiva","Ingresos","Religión","Religión otro","Nivel de importancia de su religión","Orientación política","En general, creo que la sociedad en la que vivo es justa","En términos generales, el sistema político chileno opera como debería","La sociedad chilena necesita ser reestructurada de forma radical","Chile es el mejor país del mundo para vivir","La mayoría de las políticas públicas se orientan hacia el bien mayor de la sociedad","En esta sociedad todos tienen alguna oportunidad para acceder a riqueza y felicidad","Nuestra sociedad se está volviendo peor cada año","Esta sociedad está organizada de tal modo que la gente usualmente consigue lo que merece","Es natural que un grupo tenga más oportunidades en la vida que otros","Los grupos inferiores deberían mantenerse en su lugar","Para progresar en la vida, en ocasiones es necesario pasar por encima de otras personas","Deberíamos incrementar la equidad social","La igualdad entre los grupos debería ser nuestro ideal","Deberíamos hacer todo cuanto podamos para igualar las condiciones de los diferentes grupos","En general, la relación entre hombres y mujeres en Chile es justa","Todos, tanto hombres como mujeres tienen la misma oportunidad para acceder a riqueza y felicidad en Chile.","Todos tienen la misma oportunidad para acceder a riqueza y felicidad en Chile, sin importar su origen étnico (descendiente indígena o no)","En general, la relación entre distintos grupos étnicos en Chile es justa","Todos deberíamos superar, como una sola nación, los problemas olvidando las diferencias pasadas y los conflictos entre los Mapuche y chilenos no-indígenas","No deberíamos tener que pagar por los errores de nuestros ancestros","La gente que no vivió durante siglos pasados no debería sentirse responsable por las acciones de sus ancestros","Creo que la cultura Mapuche ayuda a definir a Chile de forma positiva","Considero que la cultura Mapuche debería quedarse donde pertenece—con los Mapuche. No les corresponde a otros chilenos","Chile sería un mejor lugar para vivir si nos olvidáramos de promover la cultura Mapuche a todos","Hoy día en Chile ya estamos muy mezclados, por lo que no tiene sentido hablar sobre Mapuche y no-Mapuche","No debieran existir políticas especificas para personas Mapuche, pues hoy día todos somos mestizos","El mestizaje entre Mapuche y no-Mapuche es una de las características más importantes de la población chilena","Siento gran orgullo de la tierra que es nuestro Chile","Aunque a veces pueda no estar de acuerdo con el gobierno, mi compromiso con Chile siempre se mantiene fuerte","Generalmente, mientras más influencia tenga Chile sobre otras naciones, mejor estarán","Naciones extranjeras han hecho cosas muy buenas, pero aún así no son tan buenas como Chile","Me identifico con los chilenos","En vez de tanta preocupación por los derechos de las personas, lo que este país necesita es orden y mano dura","Lo que nuestro país necesita es una autoridad fuerte con la determinación para devolvernos al camino correcto","La obediencia y el respeto por la autoridad son los valores más importantes que los niños debieran aprender","Las verdaderas claves para tener una buena vida son la obediencia y la disciplina","Abandonar las tradiciones tendrá consecuencias terribles en el futuro","En vez de estar permanentemente cuestionando las bases de nuestra sociedad, a la larga es mejor ser alguien correcto que respeta las normas","Los ricos deberían ser despojados de sus pertenencias y estatus","Chile estaría mucho mejor si toda la gente rica estuviese en lo más bajo de la escala social","Si pudiera rehacer la sociedad, pondría a las personas que actualmente tienen más privilegios lo más abajo en la escala social","Necesitamos reemplazar el orden establecido por cualquier medio que sea necesario","Toda la gente políticamente conservadora es tonta","Mi etnia (indígena / no-indígena) es una parte importante de mi identidad","Mi género (mujer / hombre) es una parte importante de mi identidad","Mi clase (clase baja / clase media / clase alta) es una parte importante de mi identidad","Usualmente se nos discrimina por ser mujeres/hombres","Usualmente se nos discrimina por ser indígenas/no indígenas","Me preocupa mucho la actual situación de inseguridad y delincuencia en el país","Me preocupa mucho la actual situación económica del país","Durante el estallido social (2019), hubo violaciones a los derechos humanos","Durante la dictadura militar (1973-1990), hubo violaciones a los derechos humanos","El estado de Chile debería ser plurinacional, es decir, reconocer a los pueblos originarios como naciones con cierta autonomía","Una parte del himno nacional debería cantarse en lenguas originarias (ej., Mapudungun, Aymara, etc.), para reflejar la diversidad cultural de Chile","Los inmigrantes de países latinoamericanos en Chile que necesiten apoyo económico, deberían recibirlo por parte del estado","Estoy satisfecho con mi vida",".... Te sientes desesperanzado/a?",".... Te sientes tan deprimido/a que nada te podría animar?",".... Te sientes inquieto/a o ansioso/a?",".... Sientes que todo cuesta un gran esfuerzo?",".... Te sientes inútil?",".... Te sientes nervioso/a?","Peruanos","Bolivianos","Colombianos","Venezolanos","Haitianos","Argentinos","Estado","Congreso","Carabineros","Fuerzas Armadas","Justicia","Constituyente","Cambio en demandas Mapuche en los últimos 3 años","Cambio en el trato hacia Mapuche en los últimos 3 años","OW ID","tiempo","filtro","Justificación del sistema","Justificación del sistema de género","Justificación del sistema étnico","Orientación a la dominancia social","SDO-D","SDO-E","Autoritarismo de derecha","Autoritarismo de izquierda","Negación histórica","Exclusión simbólica","Mestizaje","Patriotismo","Nacionalismo","Plurinacionalismo","Malestar psicológico","Orientación política (3 grupos)","Ingresos (en Millones)","Zona del país","En su opinión, ¿Le parece que las demandas del pueblo Mapuche en los últimos tres años han cambiado? ¿De qué modo?","En su opinión, ¿Le parece que el trato de algún sector de la sociedad Chilena (instituciones, grupos, etc.) hacia las personas Mapuche ha cambiado durante los últimos tres años? ¿De qué modo?","Nivel socioeconómico","Nivel socioeconómico (numérico)"],[1046,1046,1046,1046,1046,1046,1046,1046,1046,44,1046,1046,1046,1046,1046,1046,1046,1046,1046,1046,1046,1046,1046,1046,1046,1046,1046,1046,1046,1046,1046,1046,1046,1046,1046,1046,1046,1046,1046,1046,1046,1046,1046,1046,1046,1046,1046,1046,1046,1046,1046,1046,1046,1046,1046,1046,1046,1046,1046,1046,1046,1046,1046,1046,1046,1046,1046,1046,1046,1046,1046,1046,1046,1046,1046,1046,1046,1046,1046,1046,1046,1046,1046,1046,1046,1046,116,117,1046,1046,1046,1046,1046,1046,1046,1046,1046,1046,1046,1046,1046,1046,1046,1046,1046,1046,1046,1046,1046,95,94,1046,1046],[null,1,0,18,1,1,1,100000,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,452,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,0.1,1,1,1,1,1],[null,3,1,100,239,8,5,10000000,3,37,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,4,4,4,4,4,4,7,7,7,7,7,7,7,7,7,7,7,7,114,112,1046,317947,1,6.33,7,7,6.67,7,7,7,7,7,7,7,7,7,7,4,3,10,3,5,4,6,6],[null,1.61,0.31,39.98,151.46,5.68,2.59,1125355.1,0.91,19.07,4.04,3.93,2.93,2.79,3.14,3.21,3.01,2.87,3.09,2.89,3.59,2.31,2.02,2.45,2.79,2.83,2.97,3.23,2.97,2.66,5.42,5.39,5.06,3.48,2.83,2.57,3.95,4.4,4.23,5.35,5.32,4.25,3.63,5.37,4.44,4.74,4.64,4.28,4.35,4.75,2.7,2.45,2.6,3.32,2.45,4.74,5.8,4.05,4.27,3.57,6.37,6.24,5.27,6.12,3.91,3.12,2.7,4.89,2.01,1.53,2.24,2.67,1.22,1.92,4.27,3.99,3.3,3.33,3.91,4.33,3.04,2.53,3.98,4.05,2.53,2.74,57.16,55.84,523.5,2443.22,1,2.95,3.1,2.82,2.67,2.64,2.69,4.53,2.7,5.29,2.96,4.19,5.33,3.94,3.51,1.93,1.94,1.13,1.71,3.03,2.67,4.57,2.43]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>variable_id<\/th>\n      <th>item_text<\/th>\n      <th>n<\/th>\n      <th>min<\/th>\n      <th>max<\/th>\n      <th>mean<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[3,4,5,6]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"variable_id","targets":1},{"name":"item_text","targets":2},{"name":"n","targets":3},{"name":"min","targets":4},{"name":"max","targets":5},{"name":"mean","targets":6}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<div id="section" class="section level2">
+<h2></h2>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
